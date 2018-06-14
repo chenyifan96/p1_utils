@@ -308,7 +308,12 @@ enter_loop(Mod, Options, StateName, StateData, Timeout) ->
 enter_loop(Mod, Options, StateName, StateData, ServerName, Timeout) ->
     Name = get_proc_name(ServerName),
     Parent = get_parent(),
-    Debug = gen:debug_options(Options),
+    Debug = try gen:debug_options(Name, Options) of
+                DebugT -> DebugT
+            catch
+                _:_ ->
+                    gen:debug_options(Options)
+            end,
     Limits = limit_options(Options),
     Queue = queue:new(),
     QueueLen = 0,
@@ -370,7 +375,12 @@ init_it(Starter, self, Name, Mod, Args, Options) ->
     init_it(Starter, self(), Name, Mod, Args, Options);
 init_it(Starter, Parent, Name0, Mod, Args, Options) ->
     Name = name(Name0),
-    Debug = gen:debug_options(Options),
+    Debug = try gen:debug_options(Name, Options) of
+                DebugT -> DebugT
+            catch
+                _:_ ->
+                    gen:debug_options(Options)
+            end,
     Limits = limit_options(Options),
     Queue = queue:new(),
     QueueLen = 0,
