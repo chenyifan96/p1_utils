@@ -1,3 +1,41 @@
+# Version 1.0.21
+
+* Update travis config
+
+# Version 1.0.19
+
+* Fix compatibility issues with Erlang 23
+
+# Version 1.0.18
+
+* Update copyright year
+
+# Version 1.0.17
+
+* Fix formating of error messages
+
+# Version 1.0.16
+
+* Update type specs
+* Avoid lengthy output of p1\_prof:m/r/q commands
+
+# Version 1.0.15
+
+* Add p1\_prof module
+
+# Version 1.0.14
+
+* Add contribution guide
+* Remove exec bit from doc/style.css
+
+# Version 1.0.13
+
+* Add p1\_rand and shaper module
+
+# Version 1.0.12
+
+* Don't fetch generic\_debug option from init
+
 # Version 1.0.11
 
 * Fix compilation with rebar3

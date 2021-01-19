@@ -1,6 +1,6 @@
 %%%-------------------------------------------------------------------
 %%% @author Evgeny Khramtsov <ekhramtsov@process-one.net>
-%%% @copyright (C) 2017, Evgeny Khramtsov
+%%% @copyright (C) 2017-2020 Evgeny Khramtsov
 %%% @doc
 %%%
 %%% @end
@@ -32,7 +32,10 @@ stop(_State) ->
 %%% API
 %%%===================================================================
 start() ->
-    application:start(p1_utils).
+    case application:ensure_all_started(p1_utils) of
+	{ok, _} -> ok;
+	Err -> Err
+    end.
 
 stop() ->
     application:stop(p1_utils).
